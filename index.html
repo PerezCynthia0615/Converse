@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Converse-phcj</title>
+<style>
+ header {font-family: Arial, sans-serif; background-color:black; text-align: right;}
+ body {font-family: Arial, sans-serif; margin: 0; text-align:center;}
+ footer {font-family: Arial, sans-serif; text-align:center;}
+ nav a {color:white;text-decoration:none;font-size:20px;}
+ img {width:100% auto;padding: 20px;}
+ button {text-decoration:none;}
+</style>
+</head>
+<body>
+<header>
+    <!-- Menú principal por defecto (se muestra cuando NO hay un usuario con sesión iniciada) -->
+    <nav id="menu-nav" style="height:70px; font-size:40px;">
+        <a style="font-size:25px; padding:20px;" href="iniciarsesion.html">Iniciar sesion</a>
+        <a style="font-size:25px; padding:20px;" href="registrate.html">Registrate</a>
+    </nav>
+</header>
+<h1 style="text-align:left; font-size:50px;">CONVERSE ★❯</h1>
+<img src="converse0.png">
+<img src="converse.png">
+<img src="converse1.png">
+<img src="converse2.png">
+<img src="converse3.png"><br>
+<footer>
+ <p>Perez Hinostroza Cynthia Jacqueline | 5°i | 0615 | Construye aplicaciones web</p>
+</footer>
+<script>
+  // Espera a que toda la página web termine de cargarse antes de ejecutar el código
+  document.addEventListener("DOMContentLoaded", function() {
+      // Revisa si en la memoria del navegador hay guardado algún nombre de usuario
+      const nombreGuardado = localStorage.getItem('usuarioNombre');      
+      // Busca en el HTML el menú de navegación con id="menu-nav"
+      const menuNav = document.getElementById('menu-nav');
+      // Si encuentra un nombre guardado Y además existe el menú...
+      if (nombreGuardado && menuNav) {
+          // Cambia los botones de "Iniciar sesión / Regístrate" para mostrar el saludo y el botón de cerrar sesión
+          menuNav.innerHTML = `
+              <span style="color:white; font-size:25px; padding:20px; font-weight:bold;">Hola, ${nombreGuardado}</span>
+              <a style="font-size:25px; padding:20px;" href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+          `;
+      }
+  });
+  // Función que se activa únicamente cuando la persona hace clic en "Cerrar sesión"
+  function cerrarSesion() {
+      // Borra el nombre del usuario de la memoria del navegador
+      localStorage.removeItem('usuarioNombre');      
+      // Recarga la página para que vuelva a mostrar los botones originales ("Iniciar sesión" y "Regístrate")
+      window.location.reload();
+  }
+</script>
+</body>
+</html>
